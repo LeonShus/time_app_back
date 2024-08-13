@@ -28,14 +28,14 @@ export class UserController {
 
 	@Get()
 	@Auth()
-	async profile(id: string) {
-		return this.userService.getProfile('clzpra7t60000l02dietupvh7')
+	async profile(@CurrentUser('id') id: string) {
+		return this.userService.getProfile(id)
 	}
 
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Put()
-	// @Auth()
+	@Auth()
 	async updateProfile(@CurrentUser('id') id: string, @Body() dto: UserDto) {
 		return this.userService.update(id, dto)
 	}

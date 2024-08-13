@@ -64,8 +64,10 @@ export class UserService {
 	}
 
 	async getProfile(id: string) {
+		// Находим юзера
 		const profile = await this.getById(id)
 
+		// Считаем данные для статистики
 		const totalTasks = profile.tasks.length
 		const compleatedTasks = await this.getTasks({ id: id, isCompleted: true })
 
@@ -130,7 +132,13 @@ export class UserService {
 			where: {
 				id
 			},
-			data
+			data,
+			// Выбираем какие поля вернуть
+			select: {
+				id: true,
+				name: true,
+				email: true
+			}
 		})
 	}
 }
