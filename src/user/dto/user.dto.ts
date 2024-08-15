@@ -8,7 +8,7 @@ import {
 	MinLength
 } from 'class-validator'
 
-export class PomodoroSettingsDto {
+export class timerSettingsDto {
 	@IsOptional()
 	@IsNumber()
 	@Min(1)
@@ -26,7 +26,7 @@ export class PomodoroSettingsDto {
 	intervalsCount?: number
 }
 
-export class UserDto extends PomodoroSettingsDto {
+export class UserDto extends timerSettingsDto {
     @IsOptional()
 	@IsEmail()
 	email: string
